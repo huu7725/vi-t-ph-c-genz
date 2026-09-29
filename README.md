@@ -187,20 +187,6 @@ Xem [nhật ký đối chiếu nguồn](docs/SOURCES.md). Nhãn `verified` chỉ
 
 Gợi ý phối đương đại là ý tưởng thẩm mỹ, không phải phục dựng. SVG là hình vẽ gốc trong dự án, không thể hiện chính xác kỹ thuật may năm thân hoặc độ vừa cơ thể. Chưa có thử đồ bằng ảnh người thật, thông tin thời tiết, OAuth, email xác minh/reset mật khẩu, đồng bộ đám mây hoặc mạng xã hội. Gemini vẫn có thể tạo lời giải thích thẩm mỹ chưa phù hợp; không nên coi AI là người thẩm định văn hóa.
 
-## Kịch bản demo 3 phút
-
-**0:00–0:30 — Vấn đề.** “Khi chuẩn bị kỷ yếu hoặc ngày hội văn hóa, chúng mình muốn mặc Việt phục nhưng chưa biết phối màu, chọn phụ kiện và tìm thông tin ở đâu. Việt Phục Remix giúp thử phối và đọc kiến thức có nguồn ngay trong một luồng.”
-
-**0:30–1:00 — Khám phá.** Mở trang chủ, chọn câu chuyện của áo ngũ thân. Chỉ ra đường dẫn Bảo tàng Phụ nữ Nam Bộ và giải thích rằng mockup là minh họa, không phải phục dựng.
-
-**1:00–1:45 — Tự phối.** Vào phòng phối đồ, chọn ngày hội văn hóa, phong cách trẻ trung. Đổi màu áo sang đỏ gạch, thử quạt/kính/túi, thay sneakers bằng guốc. Chỉ ra màu và phụ kiện thay đổi trực tiếp. Lưu bản tự phối.
-
-**1:45–2:20 — Gợi ý.** Bấm “Gợi ý cùng Gemini”. Nếu chưa cấu hình khóa, nói rõ đây là gợi ý mẫu. Khi có khóa, giải thích Gemini nhận danh mục cùng ngữ cảnh nguồn; backend kiểm tra ID trước khi hiển thị. Áp dụng một phương án và lưu.
-
-**2:20–2:50 — Lookbook.** Chọn hai bản để so sánh, đọc sự kiện/phụ kiện, thử tải lại trang để thấy dữ liệu còn lưu. Có thể xuất JSON để giữ bản sao.
-
-**2:50–3:00 — Giá trị.** “Chúng mình muốn người trẻ thử phong cách của riêng mình, đồng thời có một điểm bắt đầu đáng tin cậy để tìm hiểu trang phục Việt.”
-
 
 ## Mẫu Nam/Nữ và tương thích dữ liệu
 
