@@ -6,7 +6,8 @@ import { cookieValue, currentSession, GUEST_COOKIE, SESSION_COOKIE, hashPassword
 const email = z.string().trim().email('Email không hợp lệ.').max(254).transform(s => s.toLowerCase());
 const password = z.string().min(10, 'Mật khẩu cần ít nhất 10 ký tự.').max(128, 'Mật khẩu tối đa 128 ký tự.');
 const registerSchema = z.object({ name: z.string().trim().min(2, 'Tên cần ít nhất 2 ký tự.').max(60), email, password, importGuestLooks: z.boolean().default(true) }).strict();
-const loginSchema = z.object({ email, password, importGuestLooks: z.boolean().default(false) }).strict();
+// Existing seeded passwords are verified as stored; the 10-character rule applies to registration.
+const loginSchema = z.object({ email, password: z.string().min(1, 'Vui lòng nhập mật khẩu.').max(128), importGuestLooks: z.boolean().default(false) }).strict();
 
 export function authRoutes(store: AuthStore) {
   const router = Router();

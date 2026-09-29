@@ -4,10 +4,17 @@ import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { createApp } from "./app.js";
+import { AuthStore } from './authStore.js';
+import { readDemoConfig, seedDemoData } from './seedDemo.js';
 
 const backendRoot = fileURLToPath(new URL("../", import.meta.url));
 dotenv.config({ path: path.join(backendRoot, ".env") });
-const app = createApp();
+const seedConfig = readDemoConfig(process.env);
+const store = new AuthStore();
+const seedResult = await seedDemoData(store, seedConfig);
+if (seedResult.status === 'created') console.log(`[Database] Đã tạo tài khoản demo ${seedResult.email} và ${seedResult.lookCount} bản phối mẫu.`);
+else if (seedResult.status === 'exists') console.log('[Database] Tài khoản demo đã tồn tại; giữ nguyên dữ liệu.');
+const app = createApp({ store });
 const frontendDist = path.resolve(backendRoot, "../frontend/dist");
 if (existsSync(path.join(frontendDist, "index.html"))) {
   app.use(express.static(frontendDist));

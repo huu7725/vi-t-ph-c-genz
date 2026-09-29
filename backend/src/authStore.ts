@@ -30,6 +30,10 @@ export class AuthStore {
       CREATE TABLE IF NOT EXISTS ai_usage (actor_id TEXT NOT NULL REFERENCES actors(id), day TEXT NOT NULL, used INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(actor_id,day));
       CREATE TABLE IF NOT EXISTS ai_reservations (id TEXT PRIMARY KEY, actor_id TEXT NOT NULL REFERENCES actors(id), day TEXT NOT NULL, expires_at INTEGER NOT NULL);
       CREATE TABLE IF NOT EXISTS auth_attempts (key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset_at INTEGER NOT NULL);`);
+    this.db.exec(`CREATE TABLE IF NOT EXISTS account_limits (
+      actor_id TEXT PRIMARY KEY REFERENCES actors(id),
+      ai_per_day INTEGER NOT NULL CHECK(ai_per_day > 0)
+    );`);
     this.cleanup();
   }
   close() { this.db.close(); }
@@ -108,15 +112,17 @@ export class AuthStore {
     const used = Number(this.db.prepare('SELECT used FROM ai_usage WHERE actor_id=? AND day=?').get(session.actorId, day)?.used || 0);
     const pending = Number(this.db.prepare('SELECT count(*) AS n FROM ai_reservations WHERE actor_id=? AND day=? AND expires_at>?').get(session.actorId, day, this.now())!.n);
     const user = this.db.prepare('SELECT actor_id AS id, name, email FROM users WHERE actor_id=?').get(session.actorId);
+    const accountLimit = this.db.prepare('SELECT ai_per_day FROM account_limits WHERE actor_id=?').get(session.actorId);
+    const aiPerDay = session.role === 'guest' ? limits.guestAi : accountLimit ? Number(accountLimit.ai_per_day) : null;
     return { actorId: session.actorId, role: session.role, user: user || null, csrfToken: session.csrf,
-      limits: { aiPerDay: session.role === 'guest' ? limits.guestAi : null, lookbook: session.role === 'guest' ? limits.guestLooks : limits.memberLooks },
-      usage: { aiUsed: used, aiRemaining: session.role === 'guest' ? Math.max(0, limits.guestAi - used - pending) : null, lookbookCount: this.countLooks(session.actorId), resetsAt, timezone: 'Asia/Ho_Chi_Minh' } };
+      limits: { aiPerDay, lookbook: session.role === 'guest' ? limits.guestLooks : limits.memberLooks },
+      usage: { aiUsed: used, aiRemaining: aiPerDay === null ? null : Math.max(0, aiPerDay - used - pending), lookbookCount: this.countLooks(session.actorId), resetsAt, timezone: 'Asia/Ho_Chi_Minh' } };
   }
   reserveAi(session: Session) {
     return this.transaction(() => {
       this.cleanup();
       const snapshot = this.snapshot(session);
-      if (snapshot.usage.aiRemaining === 0) throw new AppError(429, 'AI_LIMIT', 'Bạn đã dùng hết 3 lượt AI hôm nay. Đăng ký hoặc quay lại sau 00:00 giờ Việt Nam.');
+      if (snapshot.usage.aiRemaining === 0) throw new AppError(429, 'AI_LIMIT', session.role === 'guest' ? 'Bạn đã dùng hết 3 lượt AI hôm nay. Đăng ký hoặc quay lại sau 00:00 giờ Việt Nam.' : `Tài khoản đã dùng hết ${snapshot.limits.aiPerDay} lượt AI hôm nay. Quay lại sau 00:00 giờ Việt Nam.`);
       const pending = this.db.prepare('SELECT id FROM ai_reservations WHERE actor_id=?').get(session.actorId);
       if (pending) throw new AppError(409, 'AI_BUSY', 'Một yêu cầu AI đang được xử lý. Vui lòng chờ kết quả.');
       const id = randomUUID();

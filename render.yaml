@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     rootDir: backend
-    buildCommand: npm install && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: npm start
     healthCheckPath: /health
     envVars:
@@ -13,6 +13,8 @@ services:
       - key: NODE_ENV
         value: production
       - key: COOKIE_SECURE
+        value: "true"
+      - key: SEED_DEMO_DATA
         value: "true"
       - key: FRONTEND_URL
         value: https://viet-phuc-remix-web.onrender.com
@@ -27,7 +29,7 @@ services:
     name: viet-phuc-remix-web
     runtime: static
     rootDir: .
-    buildCommand: npm install && npm run build -w frontend
+    buildCommand: npm ci --include=dev && npm run build -w frontend
     staticPublishPath: frontend/dist
     routes:
       - type: rewrite
