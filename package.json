@@ -1,0 +1,23 @@
+{
+  "name": "viet-phuc-remix",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c green,cyan \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "start": "npm run start -w backend",
+    "test": "npm run test -w backend",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "@playwright/test": "^1.58.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

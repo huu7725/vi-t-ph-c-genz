@@ -1,0 +1,47 @@
+[
+  {
+    "id": "fact_ao_dai_01",
+    "garmentId": "ao_dai",
+    "title": "Áo dài và những chuyển biến hiện đại",
+    "description": "Theo trang Vietnam Tourism, trong thập niên 1930, họa sĩ Le Mur Nguyễn Cát Tường đã góp phần cải biến áo dài theo dáng ôm hơn, với hai tà. Đây là một dấu mốc trong hành trình biến đổi của trang phục, không phải hình dáng duy nhất của áo dài qua mọi thời kỳ.",
+    "context": "Sự phát triển của áo dài trong thế kỷ XX.",
+    "identifyingFeatures": "Bản áo dài hiện đại trong demo được minh họa bằng hai tà dài đi cùng quần.",
+    "reference": {
+      "title": "All about ao dai: Vietnam's national dress",
+      "publisher": "Vietnam Tourism — Cục Du lịch Quốc gia Việt Nam",
+      "url": "https://vietnam.travel/things-to-do/ao-dai-vietnam"
+    },
+    "verificationStatus": "verified",
+    "verifiedAt": "2026-09-28"
+  },
+  {
+    "id": "fact_ngu_than_01",
+    "garmentId": "ao_ngu_than",
+    "title": "Năm thân áo, một câu chuyện để tìm hiểu",
+    "description": "Bài viết của Bảo tàng Phụ nữ Nam Bộ mô tả áo ngũ thân gồm năm thân áo và năm cúc. Bài viết cũng giới thiệu cách diễn giải biểu tượng của các thân và cúc áo trong ảnh hưởng Nho học. Đó là cách diễn giải được nguồn nêu, không phải điều kiện để đánh giá người mặc.",
+    "context": "Tìm hiểu cấu trúc và diễn giải văn hóa của áo ngũ thân.",
+    "identifyingFeatures": "Năm thân áo, cổ đứng và hàng khuy; hình vẽ trong demo chỉ minh họa dáng bên ngoài.",
+    "reference": {
+      "title": "Áo dài ngũ thân — Hành trình trở lại",
+      "publisher": "Bảo tàng Phụ nữ Nam Bộ",
+      "url": "https://baotangphunu.com/4266-2/"
+    },
+    "verificationStatus": "verified",
+    "verifiedAt": "2026-09-28"
+  },
+  {
+    "id": "fact_ngu_than_02",
+    "garmentId": "ao_ngu_than",
+    "title": "Cùng tìm hiểu các dáng tay áo",
+    "description": "Bảo tàng Phụ nữ Nam Bộ nhắc đến hai loại áo ngũ thân: tay thụng và tay hẹp. Bản demo chọn minh họa tay chẽn để người dùng thử màu và phụ kiện; không thể hiện đầy đủ kỹ thuật cắt may hoặc mọi biến thể lịch sử.",
+    "context": "Nhận biết sự đa dạng về hình dáng áo.",
+    "identifyingFeatures": "Ống tay có thể rộng hoặc gọn hơn tùy loại áo.",
+    "reference": {
+      "title": "Áo dài ngũ thân — Hành trình trở lại",
+      "publisher": "Bảo tàng Phụ nữ Nam Bộ",
+      "url": "https://baotangphunu.com/4266-2/"
+    },
+    "verificationStatus": "verified",
+    "verifiedAt": "2026-09-28"
+  }
+]

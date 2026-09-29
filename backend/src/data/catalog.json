@@ -1,0 +1,206 @@
+{
+  "garments": [
+    {
+      "id": "ao_dai",
+      "name": "Áo dài",
+      "subtitle": "Một nét Việt, muôn cách thể hiện",
+      "shortDesc": "Hai tà áo mềm mại đi cùng quần dài. Bắt đầu với một gam màu bạn yêu, rồi thêm một chút cá tính.",
+      "bestFor": ["ky_yeu", "du_xuan", "ngoai_khoa"]
+    },
+    {
+      "id": "ao_ngu_than",
+      "name": "Áo ngũ thân",
+      "subtitle": "Nét xưa trong nhịp sống mới",
+      "shortDesc": "Khám phá dáng áo năm thân, cổ đứng và hàng khuy bên. Demo minh họa phiên bản tay chẽn với phom thoải mái.",
+      "bestFor": ["ky_yeu", "du_xuan", "ngoai_khoa"]
+    }
+  ],
+  "events": [
+    {
+      "id": "ky_yeu",
+      "name": "Chụp ảnh kỷ yếu",
+      "desc": "Lưu lại một thời thanh xuân, cùng những người bạn thương."
+    },
+    {
+      "id": "du_xuan",
+      "name": "Du xuân / Dịp Tết",
+      "desc": "Dạo phố hoa, gặp gỡ bạn bè và đón những ngày đầu năm."
+    },
+    {
+      "id": "ngoai_khoa",
+      "name": "Ngày hội văn hóa",
+      "desc": "Giao lưu, khám phá và mang nét Việt đến trường."
+    }
+  ],
+  "styles": [
+    {
+      "id": "thanh_lich",
+      "name": "Thanh lịch",
+      "desc": "Nhẹ nhàng, chỉn chu"
+    },
+    {
+      "id": "toi_gian",
+      "name": "Tối giản",
+      "desc": "Ít chi tiết, nhiều cá tính"
+    },
+    {
+      "id": "tre_trung",
+      "name": "Trẻ trung",
+      "desc": "Một chút remix của bạn"
+    }
+  ],
+  "colorPalette": [
+    {
+      "id": "ngoc_bich",
+      "name": "Xanh ngọc bích",
+      "hex": "#1E5E58",
+      "type": "deep"
+    },
+    {
+      "id": "do_gach",
+      "name": "Đỏ gạch nung",
+      "hex": "#BC4749",
+      "type": "warm"
+    },
+    {
+      "id": "trang_kem",
+      "name": "Trắng ngà",
+      "hex": "#FDFBF7",
+      "type": "neutral"
+    },
+    {
+      "id": "vang_mo_ga",
+      "name": "Vàng mỡ gà",
+      "hex": "#E9C46A",
+      "type": "bright"
+    },
+    {
+      "id": "xanh_cham",
+      "name": "Xanh chàm",
+      "hex": "#264653",
+      "type": "deep"
+    },
+    {
+      "id": "tim_hue",
+      "name": "Tím hoa cà",
+      "hex": "#5E3054",
+      "type": "deep"
+    },
+    {
+      "id": "hong_phan",
+      "name": "Hồng phấn",
+      "hex": "#E7A8A5",
+      "type": "pastel"
+    },
+    {
+      "id": "xanh_mint",
+      "name": "Xanh mint",
+      "hex": "#B7D7C4",
+      "type": "pastel"
+    },
+    {
+      "id": "xanh_may",
+      "name": "Xanh mây",
+      "hex": "#A7C7E7",
+      "type": "pastel"
+    },
+    {
+      "id": "tim_lilac",
+      "name": "Tím lilac",
+      "hex": "#C6B5DD",
+      "type": "pastel"
+    },
+    {
+      "id": "cam_dao",
+      "name": "Cam đào",
+      "hex": "#F2B79F",
+      "type": "pastel"
+    },
+    {
+      "id": "den_than",
+      "name": "Đen than",
+      "hex": "#30343B",
+      "type": "deep"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "acc_kieng_bac",
+      "name": "Kiềng bạc",
+      "category": "Cảm hứng truyền thống",
+      "icon": "ring"
+    },
+    {
+      "id": "acc_khan_van",
+      "name": "Khăn vấn",
+      "category": "Cảm hứng truyền thống",
+      "icon": "turban"
+    },
+    {
+      "id": "acc_non_la",
+      "name": "Nón lá cầm tay",
+      "category": "Cảm hứng truyền thống",
+      "icon": "conical_hat"
+    },
+    {
+      "id": "acc_quat_tre",
+      "name": "Quạt xếp",
+      "category": "Cảm hứng truyền thống",
+      "icon": "fan"
+    },
+    {
+      "id": "acc_guoc_moc",
+      "name": "Guốc mộc",
+      "category": "Cảm hứng truyền thống",
+      "icon": "clogs"
+    },
+    {
+      "id": "acc_tui_coi",
+      "name": "Túi cói",
+      "category": "Phối đương đại",
+      "icon": "tote"
+    },
+    {
+      "id": "acc_sneaker_trang",
+      "name": "Sneakers trắng",
+      "category": "Phối đương đại",
+      "icon": "sneakers"
+    },
+    {
+      "id": "acc_kinh_ram",
+      "name": "Kính râm retro",
+      "category": "Phối đương đại",
+      "icon": "sunglasses"
+    },
+    {
+      "id": "acc_bong_tai",
+      "name": "Bông tai ngọc trai",
+      "category": "Phối đương đại",
+      "icon": "earrings"
+    },
+    {
+      "id": "acc_vong_tay",
+      "name": "Vòng tay bạc",
+      "category": "Phối đương đại",
+      "icon": "bracelet"
+    },
+    {
+      "id": "acc_kep_hoa",
+      "name": "Kẹp tóc hoa",
+      "category": "Phối đương đại",
+      "icon": "flower"
+    },
+    {
+      "id": "acc_chuoi_ngoc",
+      "name": "Chuỗi ngọc trai",
+      "category": "Phối đương đại",
+      "icon": "necklace"
+    },
+    {
+      "id": "acc_tui_deo_cheo",
+      "name": "Túi đeo chéo mini",
+      "category": "Phối đương đại",
+      "icon": "crossbody"
+    }
+  ]
+}

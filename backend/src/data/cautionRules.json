@@ -1,0 +1,24 @@
+[
+  {
+    "id": "caution_quan_dai",
+    "garmentId": "all",
+    "rule": "Chú ý cả áo và quần khi phối màu: các bản phối trong demo luôn có quần dài đi cùng.",
+    "rationale": "Vietnam Tourism mô tả áo dài đi cùng quần. Ứng dụng giữ cấu trúc này trong mockup; không suy rộng thành quy định cho mọi trang phục hoặc mọi thời kỳ.",
+    "reference": {
+      "title": "All about ao dai: Vietnam's national dress",
+      "publisher": "Vietnam Tourism",
+      "url": "https://vietnam.travel/things-to-do/ao-dai-vietnam"
+    },
+    "verificationStatus": "verified",
+    "kind": "source_based"
+  },
+  {
+    "id": "caution_remix",
+    "garmentId": "all",
+    "rule": "Sneakers, túi cói và kính râm ở đây là gợi ý phối đương đại. Với sự kiện có quy định riêng, hãy xem hướng dẫn của ban tổ chức.",
+    "rationale": "Đây là lưu ý biên tập của Việt Phục Remix, không phải quy tắc lịch sử hay đánh giá mức độ đúng văn hóa của người mặc.",
+    "reference": null,
+    "verificationStatus": "editorial",
+    "kind": "styling_tip"
+  }
+]

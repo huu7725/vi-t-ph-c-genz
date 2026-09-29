@@ -1,0 +1,80 @@
+[
+  {
+    "id": "look_preset_01",
+    "title": "Thanh xuân màu ngọc",
+    "garmentId": "ao_ngu_than",
+    "eventId": "ky_yeu",
+    "styleId": "thanh_lich",
+    "palette": ["#1E5E58", "#FDFBF7"],
+    "accessoryIds": ["acc_quat_tre", "acc_sneaker_trang"],
+    "stylingReason": "Xanh ngọc đi cùng trắng ngà tạo sự cân bằng giữa gam trầm và sáng. Quạt xếp thêm một điểm nhấn cho bức ảnh.",
+    "culturalFactIds": ["fact_ngu_than_01", "fact_ngu_than_02"],
+    "cautionRuleIds": ["caution_quan_dai"],
+    "isFallback": true
+  },
+  {
+    "id": "look_preset_02",
+    "title": "Một thoáng sân trường",
+    "garmentId": "ao_dai",
+    "eventId": "ky_yeu",
+    "styleId": "toi_gian",
+    "palette": ["#E7A8A5", "#FDFBF7"],
+    "accessoryIds": ["acc_non_la", "acc_guoc_moc"],
+    "stylingReason": "Hồng phấn và trắng ngà tạo cảm giác nhẹ nhàng. Nón lá đem đến một đạo cụ chụp ảnh gần gũi.",
+    "culturalFactIds": ["fact_ao_dai_01"],
+    "cautionRuleIds": ["caution_quan_dai"],
+    "isFallback": true
+  },
+  {
+    "id": "look_preset_03",
+    "title": "Hẹn nhau phố hoa",
+    "garmentId": "ao_dai",
+    "eventId": "du_xuan",
+    "styleId": "thanh_lich",
+    "palette": ["#BC4749", "#FDFBF7"],
+    "accessoryIds": ["acc_tui_coi", "acc_guoc_moc"],
+    "stylingReason": "Đỏ gạch tạo điểm nhấn ấm áp cho buổi dạo phố. Quần trắng ngà giúp tổng thể nhẹ hơn.",
+    "culturalFactIds": ["fact_ao_dai_01"],
+    "cautionRuleIds": ["caution_quan_dai"],
+    "isFallback": true
+  },
+  {
+    "id": "look_preset_04",
+    "title": "Nét xuân an nhiên",
+    "garmentId": "ao_ngu_than",
+    "eventId": "du_xuan",
+    "styleId": "thanh_lich",
+    "palette": ["#5E3054", "#FDFBF7"],
+    "accessoryIds": ["acc_khan_van", "acc_quat_tre"],
+    "stylingReason": "Tím hoa cà trên phom áo ngũ thân tạo một tổng thể trầm ấm. Một chiếc quạt xếp giữ bố cục gọn gàng.",
+    "culturalFactIds": ["fact_ngu_than_01"],
+    "cautionRuleIds": ["caution_quan_dai"],
+    "isFallback": true
+  },
+  {
+    "id": "look_preset_05",
+    "title": "Nét Việt, nhịp mới",
+    "garmentId": "ao_ngu_than",
+    "eventId": "ngoai_khoa",
+    "styleId": "tre_trung",
+    "palette": ["#264653", "#FDFBF7"],
+    "accessoryIds": ["acc_kinh_ram", "acc_sneaker_trang"],
+    "stylingReason": "Áo xanh chàm cùng sneakers trắng là một gợi ý phối đương đại. Kính retro thêm nét vui tươi khi chụp ảnh ngoài trời.",
+    "culturalFactIds": ["fact_ngu_than_01"],
+    "cautionRuleIds": ["caution_quan_dai"],
+    "isFallback": true
+  },
+  {
+    "id": "look_preset_06",
+    "title": "Ngày hội của chúng mình",
+    "garmentId": "ao_dai",
+    "eventId": "ngoai_khoa",
+    "styleId": "tre_trung",
+    "palette": ["#E9C46A", "#FDFBF7"],
+    "accessoryIds": ["acc_tui_coi", "acc_sneaker_trang"],
+    "stylingReason": "Vàng mỡ gà làm sáng bản phối, đi cùng túi cói và sneakers trong một cách kết hợp đương đại.",
+    "culturalFactIds": ["fact_ao_dai_01"],
+    "cautionRuleIds": ["caution_quan_dai"],
+    "isFallback": true
+  }
+]
