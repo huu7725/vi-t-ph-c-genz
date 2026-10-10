@@ -7,12 +7,18 @@
   "functions": {
     "api/[...path].ts": {
       "maxDuration": 30
+    },
+    "api/gateway.ts": {
+      "maxDuration": 30
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/gateway?path=/:path*"
+      "src": "/api/(?!gateway(?:/|$))(.*)",
+      "dest": "/api/gateway?path=/$1"
+    },
+    {
+      "handle": "filesystem"
     }
-  }
+  ]
 }
