@@ -8,5 +8,11 @@
     "api/[...path].ts": {
       "maxDuration": 30
     }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/gateway?path=/:path*"
+    }
   }
 }
