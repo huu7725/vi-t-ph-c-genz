@@ -1,24 +1,18 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "viet-phuc-remix-api": {
-      "root": "backend",
-      "framework": "express",
-      "buildCommand": "npm ci --include=dev && npm run build"
-    },
-    "frontend": {
-      "root": "frontend",
-      "framework": "vite",
+  "framework": "vite",
+  "installCommand": "npm ci --include=dev",
+  "buildCommand": "npm run build --workspace frontend",
+  "outputDirectory": "frontend/dist",
+  "functions": {
+    "api/[...path].ts": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": { "service": "viet-phuc-remix-api" }
-    },
-    {
       "source": "/(.*)",
-      "destination": { "service": "frontend" }
+      "destination": "/index.html"
     }
   ]
 }
