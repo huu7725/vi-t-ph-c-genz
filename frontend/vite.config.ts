@@ -4,6 +4,9 @@ import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: {
+    include: ["three", "three/addons/controls/OrbitControls.js", "three/addons/loaders/GLTFLoader.js"],
+  },
   resolve: {
     alias: {
       "@domain": fileURLToPath(

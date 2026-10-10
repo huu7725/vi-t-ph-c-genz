@@ -10,12 +10,16 @@ import { AuthStore, AppError } from "./authStore.js";
 import { frontendOrigins } from "./origins.js";
 import { patternRoutes } from "./routes/patternRoutes.js";
 import type { PatternProvider } from "./services/patternService.js";
+import { fittingRoutes } from './fitting3d/routes.js';
+import type { FittingStylistProvider } from './fitting3d/stylist.js';
+import { tryOn3dRoutes } from "./routes/tryOn3dRoutes.js";
 
 export function createApp(
   options: {
     store?: AuthStore;
     recommend?: RecommendProvider;
     pattern?: PatternProvider;
+    fittingStylist?: FittingStylistProvider;
   } = {},
 ) {
   const store = options.store || new AuthStore();
@@ -24,6 +28,7 @@ export function createApp(
   app.disable("x-powered-by");
   const allowedOrigins = frontendOrigins();
   app.use(cors({ origin: allowedOrigins, credentials: true }));
+  app.use('/api/fitting3d', express.json({ limit: '128kb' }));
   app.use(express.json({ limit: "16kb" }));
   app.use("/api", (req, res, next) => {
     res.set("Cache-Control", "no-store");
@@ -56,7 +61,9 @@ export function createApp(
   app.use("/api/auth", authRoutes(store));
   app.use("/api/lookbook", lookbookRoutes(store));
   app.use("/api/patterns", patternRoutes(store, options.pattern));
+  app.use('/api/fitting3d', fittingRoutes(store, options.fittingStylist));
   app.use("/api", createRecommendRouter(store, options.recommend));
+  app.use("/api", tryOn3dRoutes(store.db));
   app.use("/api", (_req, res) => {
     res.status(404).json({ error: "API không tồn tại." });
   });

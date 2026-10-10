@@ -27,6 +27,8 @@ export class AuthStore {
       CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, actor_id TEXT NOT NULL REFERENCES actors(id), csrf TEXT NOT NULL, expires_at INTEGER NOT NULL);
       CREATE INDEX IF NOT EXISTS sessions_actor ON sessions(actor_id);
       CREATE TABLE IF NOT EXISTS looks (actor_id TEXT NOT NULL REFERENCES actors(id), id TEXT NOT NULL, body TEXT NOT NULL, saved_at TEXT NOT NULL, PRIMARY KEY(actor_id,id));
+      CREATE TABLE IF NOT EXISTS fitting_looks (actor_id TEXT NOT NULL REFERENCES actors(id), id TEXT NOT NULL, title TEXT NOT NULL, body TEXT NOT NULL, storage_version INTEGER NOT NULL DEFAULT 1, updated_at TEXT NOT NULL, PRIMARY KEY(actor_id,id));
+      CREATE TABLE IF NOT EXISTS fitting_ai_requests (actor_id TEXT NOT NULL REFERENCES actors(id), request_id TEXT NOT NULL, input_hash TEXT NOT NULL, body TEXT NOT NULL, expires_at INTEGER NOT NULL, PRIMARY KEY(actor_id,request_id));
       CREATE TABLE IF NOT EXISTS ai_usage (actor_id TEXT NOT NULL REFERENCES actors(id), day TEXT NOT NULL, used INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(actor_id,day));
       CREATE TABLE IF NOT EXISTS ai_reservations (id TEXT PRIMARY KEY, actor_id TEXT NOT NULL REFERENCES actors(id), day TEXT NOT NULL, expires_at INTEGER NOT NULL);
       CREATE TABLE IF NOT EXISTS auth_attempts (key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset_at INTEGER NOT NULL);`);
@@ -46,6 +48,7 @@ export class AuthStore {
     this.db.prepare('DELETE FROM sessions WHERE expires_at <= ?').run(this.now());
     this.db.prepare('DELETE FROM ai_reservations WHERE expires_at <= ?').run(this.now());
     this.db.prepare('DELETE FROM auth_attempts WHERE reset_at <= ?').run(this.now());
+    this.db.prepare('DELETE FROM fitting_ai_requests WHERE expires_at <= ?').run(this.now());
   }
   createGuest() {
     const actorId = randomUUID();
@@ -81,14 +84,19 @@ export class AuthStore {
     if (!guest) return;
     const existingCount = this.countLooks(userId);
     const rows = this.db.prepare('SELECT id,body,saved_at FROM looks WHERE actor_id=? AND id NOT IN (SELECT id FROM looks WHERE actor_id=?)').all(guestId, userId) as { id: string; body: string; saved_at: string }[];
-    if (existingCount + rows.length > limits.memberLooks) throw new AppError(409, 'LOOKBOOK_LIMIT', 'Tủ đồ tài khoản chưa đủ chỗ để chuyển các bản phối khách.');
+    const fittingRows = this.db.prepare('SELECT id,title,body,storage_version,updated_at FROM fitting_looks WHERE actor_id=? AND id NOT IN (SELECT id FROM fitting_looks WHERE actor_id=?)').all(guestId, userId) as { id: string; title: string; body: string; storage_version: number; updated_at: string }[];
+    if (existingCount + rows.length + fittingRows.length > limits.memberLooks) throw new AppError(409, 'LOOKBOOK_LIMIT', 'Tủ đồ tài khoản chưa đủ chỗ để chuyển các bản phối khách.');
     for (const row of rows) this.db.prepare('INSERT INTO looks VALUES (?, ?, ?, ?)').run(userId, row.id, row.body, row.saved_at);
+    for (const row of fittingRows) this.db.prepare('INSERT INTO fitting_looks VALUES (?, ?, ?, ?, ?, ?)').run(userId, row.id, row.title, row.body, row.storage_version, row.updated_at);
     this.db.prepare('DELETE FROM looks WHERE actor_id=?').run(guestId);
+    this.db.prepare('DELETE FROM fitting_looks WHERE actor_id=?').run(guestId);
   }
   login(user: UserRow, guestId?: string) {
     return this.transaction(() => { if (guestId) this.transferGuest(guestId, user.actor_id); return this.issueSession(user.actor_id, 'member'); });
   }
-  countLooks(actorId: string) { return Number(this.db.prepare('SELECT count(*) AS n FROM looks WHERE actor_id=?').get(actorId)!.n); }
+  countLooks(actorId: string) {
+    return Number(this.db.prepare('SELECT (SELECT count(*) FROM looks WHERE actor_id=?) + (SELECT count(*) FROM fitting_looks WHERE actor_id=?) AS n').get(actorId, actorId)!.n);
+  }
   getLooks(actorId: string) {
     const rows = this.db.prepare('SELECT body,saved_at FROM looks WHERE actor_id=? ORDER BY saved_at DESC, rowid DESC').all(actorId) as { body: string; saved_at: string }[];
     return restoreLooks(rows.map(row => ({ ...JSON.parse(row.body), savedAt: row.saved_at })));
@@ -130,11 +138,12 @@ export class AuthStore {
       return id;
     });
   }
-  finishAi(id: string, success: boolean) {
+  finishAi(id: string, success: boolean, onFinish?: () => void) {
     this.transaction(() => {
       const row = this.db.prepare('SELECT actor_id,day FROM ai_reservations WHERE id=?').get(id) as { actor_id: string; day: string } | undefined;
       if (!row) return;
       if (success) this.db.prepare('INSERT INTO ai_usage VALUES (?, ?, 1) ON CONFLICT(actor_id,day) DO UPDATE SET used=used+1').run(row.actor_id, row.day);
+      onFinish?.();
       this.db.prepare('DELETE FROM ai_reservations WHERE id=?').run(id);
     });
   }

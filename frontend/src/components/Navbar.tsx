@@ -1,24 +1,33 @@
 import {
   ArrowUpRight,
   Bookmark,
+  Box,
   Compass,
   Palette,
   Sparkles,
 } from "lucide-react";
 import type { Tab } from "../types";
-import type { AccountSession } from '../lib/account';
+import type { AccountSession } from "../lib/account";
 
 interface Props {
   activeTab: Tab;
   setActiveTab: (tab: Tab) => void;
   lookbookCount: number;
   session: AccountSession | null;
-  onAuth: (mode: 'login' | 'register' | 'account') => void;
+  onAuth: (mode: "login" | "register" | "account") => void;
 }
-export function Navbar({ activeTab, setActiveTab, lookbookCount, session, onAuth }: Props) {
+export function Navbar({
+  activeTab,
+  setActiveTab,
+  lookbookCount,
+  session,
+  onAuth,
+}: Props) {
   const tabs = [
     { id: "explore", name: "Khám phá", icon: Compass },
     { id: "studio", name: "Phòng phối đồ", icon: Palette },
+    { id: "tryon3d", name: "Thử Đồ 3D (AI)", icon: Sparkles },
+    { id: "fitting3d", name: "Phòng 3D", icon: Box },
     { id: "recommend", name: "Gợi ý", icon: Sparkles },
     { id: "lookbook", name: "Lookbook", icon: Bookmark },
   ] as const;
@@ -54,7 +63,29 @@ export function Navbar({ activeTab, setActiveTab, lookbookCount, session, onAuth
           ))}
         </nav>
         <div className="nav-account">
-          {session?.role === 'member' ? <button className="account-trigger" onClick={() => onAuth('account')} aria-label={`Tài khoản của ${session.user?.name}`}><span>{session.user?.name.charAt(0).toUpperCase()}</span><strong>{session.user?.name}</strong></button> : <><span className="guest-label">Khách trải nghiệm</span><button className="text-link" onClick={() => onAuth('login')}>Đăng nhập</button><button className="button primary nav-register" onClick={() => onAuth('register')}>Đăng ký <ArrowUpRight size={13}/></button></>}
+          {session?.role === "member" ? (
+            <button
+              className="account-trigger"
+              onClick={() => onAuth("account")}
+              aria-label={`Tài khoản của ${session.user?.name}`}
+            >
+              <span>{session.user?.name.charAt(0).toUpperCase()}</span>
+              <strong>{session.user?.name}</strong>
+            </button>
+          ) : (
+            <>
+              <span className="guest-label">Khách trải nghiệm</span>
+              <button className="text-link" onClick={() => onAuth("login")}>
+                Đăng nhập
+              </button>
+              <button
+                className="button primary nav-register"
+                onClick={() => onAuth("register")}
+              >
+                Đăng ký <ArrowUpRight size={13} />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </header>

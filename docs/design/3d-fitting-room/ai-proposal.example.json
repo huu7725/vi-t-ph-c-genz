@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "stylist-proposal/1",
+  "requestId": "req-4c218",
+  "baseRevision": 12,
+  "catalogVersion": "catalog-2026-10-v1",
+  "rulesetVersion": "rules-2026-10-v1",
+  "status": "proposal",
+  "question": null,
+  "alternatives": [
+    {
+      "id": "look-jade",
+      "label": "Ngọc & ngà",
+      "reason": "Giữ áo xanh ngọc, làm sáng tổng thể bằng quần trắng ngà và dùng dáng đứng cầm quạt đã kiểm tra cho bộ áo này.",
+      "claimIds": [],
+      "operations": [
+        {
+          "op": "setDye",
+          "itemId": "pants-01",
+          "materialSlotId": "fabric",
+          "zoneId": "main",
+          "hex": "#FDFBF7"
+        },
+        {
+          "op": "setPose",
+          "clipId": "stand-fan-v1"
+        }
+      ]
+    }
+  ],
+  "outfitId": "demo-outfit-001"
+}

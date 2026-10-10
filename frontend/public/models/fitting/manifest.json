@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "generator": "Original Blender fitting mannequin v1",
+  "profiles": {
+    "nu": {
+      "height": 1.66,
+      "referenceHeight": 1.78,
+      "avatar": "/models/fitting/nu/base_avatar.glb",
+      "triangles": 39996,
+      "restPose": "A-pose",
+      "wireframe": false
+    },
+    "nam": {
+      "height": 1.78,
+      "referenceHeight": 1.78,
+      "avatar": "/models/fitting/nam/base_avatar.glb",
+      "triangles": 40000,
+      "restPose": "A-pose",
+      "wireframe": false
+    }
+  }
+}

@@ -14,4 +14,4 @@ export type {
   Decoration,
   RecommendationResult,
 } from "@domain";
-export type Tab = "explore" | "studio" | "recommend" | "lookbook";
+export type Tab = "explore" | "studio" | "tryon3d" | "fitting3d" | "recommend" | "lookbook";

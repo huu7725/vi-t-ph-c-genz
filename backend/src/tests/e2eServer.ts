@@ -2,9 +2,18 @@
 import { createApp } from "../app.js";
 import { AuthStore } from "../authStore.js";
 import { fallbackRecommendations, motifCatalog } from "../domain.js";
+import { fallbackFittingSuggestions } from "../fitting3d/stylist.js";
 const store = new AuthStore(":memory:");
 createApp({
   store,
+  fittingStylist: async (request) => {
+    const result = fallbackFittingSuggestions(request);
+    return {
+      ...result,
+      source: "gemini" as const,
+      note: "Gợi ý 3D giả lập chỉ dùng cho kiểm thử.",
+    };
+  },
   pattern: async (prompt) => {
     if (prompt.includes("ERROR")) throw new Error("Simulated provider failure");
     const motif = motifCatalog.find((m) => m.id === "lotus")!;

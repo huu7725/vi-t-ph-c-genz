@@ -1,0 +1,703 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Resolved Outfit V1 — application-owned snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "3d-outfit/1"
+    },
+    "outfitId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "catalogVersion": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    },
+    "rulesetVersion": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    },
+    "culture": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "strict",
+            "creative"
+          ]
+        },
+        "profileId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profileVersion": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "mode",
+        "profileId",
+        "profileVersion"
+      ]
+    },
+    "avatar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/asset"
+        },
+        "rigId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "bodyPresetId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "heightM": {
+          "type": "number",
+          "minimum": 1.3,
+          "maximum": 2.1
+        },
+        "morphs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "id",
+              "weight"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "asset",
+        "rigId",
+        "bodyPresetId",
+        "heightM",
+        "morphs"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      },
+      "minItems": 0,
+      "maxItems": 16
+    },
+    "pose": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clipId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "timeSeconds": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 600
+        },
+        "playing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "clipId",
+        "timeSeconds",
+        "playing"
+      ]
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "presetId": {
+          "enum": [
+            "full",
+            "head",
+            "collar",
+            "hem",
+            "custom"
+          ]
+        },
+        "targetM": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -3,
+            "maximum": 3
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "radiusM": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 6
+        },
+        "azimuthRad": {
+          "type": "number",
+          "minimum": -6.2832,
+          "maximum": 6.2832
+        },
+        "polarRad": {
+          "type": "number",
+          "minimum": 0.2,
+          "maximum": 2
+        },
+        "fovDegrees": {
+          "type": "number",
+          "minimum": 25,
+          "maximum": 50
+        }
+      },
+      "required": [
+        "presetId",
+        "targetM",
+        "radiusM",
+        "azimuthRad",
+        "polarRad",
+        "fovDegrees"
+      ]
+    },
+    "studio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lightingPresetId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "backgroundHex": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      },
+      "required": [
+        "lightingPresetId",
+        "backgroundHex"
+      ]
+    },
+    "decorations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+          },
+          "itemId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+          },
+          "surfaceId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+          },
+          "vectorAsset": {
+            "$ref": "#/$defs/asset"
+          },
+          "uvCenter": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "uvScale": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": 0.001,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "rotationRad": {
+            "type": "number",
+            "minimum": -3.1416,
+            "maximum": 3.1416
+          },
+          "tint": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "borderGuideId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "itemId",
+          "surfaceId",
+          "vectorAsset",
+          "uvCenter",
+          "uvScale",
+          "rotationRad",
+          "tint",
+          "opacity",
+          "borderGuideId"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 32
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "outfitId",
+    "revision",
+    "catalogVersion",
+    "rulesetVersion",
+    "culture",
+    "avatar",
+    "items",
+    "pose",
+    "camera",
+    "studio",
+    "decorations"
+  ],
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "maxLength": 1024
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "url",
+        "sha256"
+      ]
+    },
+    "texture": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "semantic": {
+          "enum": [
+            "baseColor",
+            "normal",
+            "orm",
+            "sheenColor",
+            "sheenRoughness",
+            "dyeMask",
+            "embroideryMask",
+            "metalThreadMask"
+          ]
+        },
+        "asset": {
+          "$ref": "#/$defs/asset"
+        },
+        "colorSpace": {
+          "enum": [
+            "srgb",
+            "linear-data"
+          ]
+        },
+        "uvSet": {
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "repeat": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 100
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "semantic",
+        "asset",
+        "colorSpace",
+        "uvSet",
+        "repeat"
+      ]
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "slotId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "meshIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "fabricProfileId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "dyes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "zoneId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+              },
+              "hex": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "required": [
+              "zoneId",
+              "hex"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "pbr": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "metalness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "roughness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "sheen": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "sheenRoughness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "clearcoat": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "clearcoatRoughness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "anisotropy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "transmission": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "normalStrength": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            }
+          },
+          "required": [
+            "metalness",
+            "roughness",
+            "sheen",
+            "sheenRoughness",
+            "clearcoat",
+            "clearcoatRoughness",
+            "anisotropy",
+            "transmission",
+            "normalStrength"
+          ]
+        },
+        "textures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/texture"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "slotId",
+        "meshIds",
+        "fabricProfileId",
+        "dyes",
+        "pbr",
+        "textures"
+      ]
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instanceId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "asset": {
+          "$ref": "#/$defs/asset"
+        },
+        "layerId": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "slotId": {
+          "enum": [
+            "base.upper",
+            "base.lower",
+            "lining.upper",
+            "main.upper",
+            "outer.upper",
+            "head.wrap",
+            "head.pin",
+            "neck.jewelry",
+            "waist.pendant",
+            "feet.pair",
+            "hand.left",
+            "hand.right"
+          ]
+        },
+        "meshIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "binding": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "skinned",
+                "socket"
+              ]
+            },
+            "rigId": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+            },
+            "socketId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "offset": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "translationM": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": -0.1,
+                    "maximum": 0.1
+                  },
+                  "minItems": 3,
+                  "maxItems": 3
+                },
+                "quaternionXYZW": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "scale": {
+                  "const": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              },
+              "required": [
+                "translationM",
+                "quaternionXYZW",
+                "scale"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "rigId",
+            "socketId",
+            "offset"
+          ]
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/material"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "collisionProfileId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+        },
+        "occlusionMaskId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "instanceId",
+        "asset",
+        "layerId",
+        "slotId",
+        "meshIds",
+        "binding",
+        "materials",
+        "collisionProfileId",
+        "occlusionMaskId"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "culture": {
+            "properties": {
+              "mode": {
+                "const": "strict"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "culture": {
+            "properties": {
+              "profileId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+              },
+              "profileVersion": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

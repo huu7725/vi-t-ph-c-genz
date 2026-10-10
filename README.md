@@ -53,6 +53,8 @@ Khi không có khóa, API lỗi, hết thời gian chờ hoặc phản hồi kh�
 
 ## Các chức năng đã triển khai
 
+- **Pipeline asset sản xuất:** `ModularWardrobe` tải `base_avatar.glb` và outfit GLB theo skeleton chung, kiểm tra inverse bind, ẩn body clipping, cập nhật lụa PBR và dispose an toàn. Xem [GLB/rigging pipeline](docs/FITTING_3D_GLTF.md) và [script helper bones Blender](tools/blender/ao_dai_helper_bones.py).
+- **Phòng 3D:** mannequin nam/nữ, bảy phom áo, xoay/zoom, preset camera/tư thế, đổi màu/chất liệu, phụ kiện, hoa văn và nét tự vẽ; chụp PNG, lưu SQLite và áp dụng gợi ý Gemini. Tủ đồ và lượt AI dùng chung với 2D. Xem [hướng dẫn Phòng 3D](docs/FITTING_3D.md) cho cách dùng và giới hạn mô hình minh họa.
 - Khám phá hai nhóm áo và xem hộp thoại kiến thức có đường dẫn nguồn.
 - Chọn ba sự kiện, ba phong cách, 12 màu mẫu và 13 phụ kiện.
 - Chọn mẫu Nam/Nữ riêng cho cả áo dài và áo ngũ thân; khuôn mặt, tóc, vai, phom áo và tà áo được minh họa riêng. Lựa chọn được giữ khi gợi ý, lưu, áp dụng lại và so sánh.

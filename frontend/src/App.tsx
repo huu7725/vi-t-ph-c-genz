@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Check, Flower2, X } from "lucide-react";
 import {
   catalog as localCatalog,
@@ -8,6 +15,8 @@ import {
   publicFacts,
   restoreLooks,
   lineMotifSchema,
+  defaultFittingOutfit,
+  type FittingOutfit,
 } from "@domain";
 import type {
   Catalog,
@@ -37,6 +46,16 @@ import {
   type AuthFields,
 } from "./components/AuthDialog";
 import { AccessBanner } from "./components/AccessBanner";
+const FittingRoom = lazy(() =>
+  import("./features/fitting3d/FittingRoom").then((m) => ({
+    default: m.FittingRoom,
+  })),
+);
+const TryOn3dView = lazy(() =>
+  import("./features/tryon3d/TryOn3dView").then((m) => ({
+    default: m.TryOn3dView,
+  })),
+);
 
 function readLegacy() {
   try {
@@ -61,6 +80,9 @@ export function App() {
   const [catalog, setCatalog] = useState<Catalog>(localCatalog);
   const [cultureFacts, setCultureFacts] = useState<CulturalFact[]>(publicFacts);
   const [draft, setDraft] = useState<StylingRequest>({ ...defaultRequest });
+  const [fittingDraft, setFittingDraft] = useState<FittingOutfit>(() =>
+    structuredClone(defaultFittingOutfit),
+  );
   const [session, setSession] = useState<AccountSession | null>(null);
   const sessionRef = useRef<AccountSession | null>(null);
   const identityVersion = useRef(0);
@@ -109,6 +131,24 @@ export function App() {
     setSession(data.session);
     setSavedLooks(restoreLooks(data.looks));
     setAccountError("");
+  }, []);
+  const updateFittingSession = useCallback((next: AccountSession) => {
+    if (
+      sessionRef.current?.actorId !== next.actorId ||
+      sessionRef.current?.csrfToken !== next.csrfToken
+    )
+      return;
+    const previous = sessionRef.current;
+    if (
+      previous &&
+      previous.role === next.role &&
+      previous.user?.name === next.user?.name &&
+      JSON.stringify(previous.usage) === JSON.stringify(next.usage)
+    )
+      return;
+    updateVersion.current++;
+    sessionRef.current = next;
+    setSession(next);
   }, []);
   const refreshAccount = useCallback(async () => {
     const version = updateVersion.current;
@@ -518,7 +558,7 @@ export function App() {
       <Navbar
         activeTab={activeTab}
         setActiveTab={navigate}
-        lookbookCount={savedLooks.length}
+        lookbookCount={session?.usage.lookbookCount ?? savedLooks.length}
         session={session}
         onAuth={openAuth}
       />
@@ -567,6 +607,38 @@ export function App() {
             generatedMotif={generatedMotif}
           />
         )}
+        {activeTab === "tryon3d" && (
+          <Suspense
+            fallback={
+              <div className="storage-notice" role="status">
+                Đang khởi tạo không gian Thử Đồ 3D Áo Dài…
+              </div>
+            }
+          >
+            <TryOn3dView />
+          </Suspense>
+        )}
+        {activeTab === "fitting3d" && (
+          <Suspense
+            fallback={
+              <div className="storage-notice" role="status">
+                Đang mở phòng phối đồ 3D…
+              </div>
+            }
+          >
+            <FittingRoom
+              outfit={fittingDraft}
+              onChange={setFittingDraft}
+              session={session}
+              onSessionUpdate={updateFittingSession}
+              onAuth={() => openAuth("register")}
+              onRefreshSession={() => void refreshAccount()}
+              onGeneratePattern={generatePattern}
+              generatedMotif={generatedMotif}
+              isPatternLoading={isPatternLoading || isLoading}
+            />
+          </Suspense>
+        )}
         {activeTab === "recommend" && (
           <RecommendationSection
             looks={looks}
@@ -582,6 +654,17 @@ export function App() {
         )}
         {activeTab === "lookbook" && (
           <>
+            <div className="legacy-notice">
+              <span>
+                Bản phối không gian 3D được lưu trong tủ đồ riêng của Phòng 3D.
+              </span>
+              <button
+                className="text-link"
+                onClick={() => navigate("fitting3d")}
+              >
+                Mở Phòng 3D
+              </button>
+            </div>
             {remainingLegacy.length > 0 && (
               <div className="legacy-notice">
                 <span>

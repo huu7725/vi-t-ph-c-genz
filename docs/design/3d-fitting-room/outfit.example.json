@@ -1,0 +1,508 @@
+{
+  "schemaVersion": "3d-outfit/1",
+  "outfitId": "demo-outfit-001",
+  "revision": 12,
+  "catalogVersion": "catalog-2026-10-v1",
+  "rulesetVersion": "rules-2026-10-v1",
+  "culture": {
+    "mode": "creative",
+    "profileId": null,
+    "profileVersion": null
+  },
+  "avatar": {
+    "asset": {
+      "id": "avatar-adult-a",
+      "version": "v1",
+      "url": "https://assets.example.invalid/avatar-adult-a.glb",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "rigId": "vpr-humanoid-v1",
+    "bodyPresetId": "adult-a-regular",
+    "heightM": 1.7,
+    "morphs": []
+  },
+  "items": [
+    {
+      "instanceId": "base-01",
+      "asset": {
+        "id": "lining-opaque-a",
+        "version": "v1",
+        "url": "https://assets.example.invalid/lining-opaque-a.glb",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "layerId": 0,
+      "slotId": "base.upper",
+      "meshIds": [
+        "base_upper"
+      ],
+      "binding": {
+        "type": "skinned",
+        "rigId": "vpr-humanoid-v1",
+        "socketId": null,
+        "offset": {
+          "translationM": [
+            0,
+            0,
+            0
+          ],
+          "quaternionXYZW": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "materials": [
+        {
+          "slotId": "fabric",
+          "meshIds": [
+            "base_upper"
+          ],
+          "fabricProfileId": "silk-draped-v1",
+          "dyes": [
+            {
+              "zoneId": "main",
+              "hex": "#FDFBF7"
+            }
+          ],
+          "pbr": {
+            "metalness": 0,
+            "roughness": 0.4,
+            "sheen": 0.58,
+            "sheenRoughness": 0.68,
+            "clearcoat": 0,
+            "clearcoatRoughness": 0.3,
+            "anisotropy": 0.32,
+            "transmission": 0,
+            "normalStrength": 0.18
+          },
+          "textures": [
+            {
+              "semantic": "normal",
+              "asset": {
+                "id": "weave-silk-1k",
+                "version": "v1",
+                "url": "https://assets.example.invalid/weave-silk-1k.ktx2",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "colorSpace": "linear-data",
+              "uvSet": 0,
+              "repeat": [
+                12,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "collisionProfileId": "standard-v1",
+      "occlusionMaskId": null
+    },
+    {
+      "instanceId": "pants-01",
+      "asset": {
+        "id": "trousers-wide-a",
+        "version": "v1",
+        "url": "https://assets.example.invalid/trousers-wide-a.glb",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "layerId": 0,
+      "slotId": "base.lower",
+      "meshIds": [
+        "pants"
+      ],
+      "binding": {
+        "type": "skinned",
+        "rigId": "vpr-humanoid-v1",
+        "socketId": null,
+        "offset": {
+          "translationM": [
+            0,
+            0,
+            0
+          ],
+          "quaternionXYZW": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "materials": [
+        {
+          "slotId": "fabric",
+          "meshIds": [
+            "pants"
+          ],
+          "fabricProfileId": "silk-draped-v1",
+          "dyes": [
+            {
+              "zoneId": "main",
+              "hex": "#FDFBF7"
+            }
+          ],
+          "pbr": {
+            "metalness": 0,
+            "roughness": 0.4,
+            "sheen": 0.58,
+            "sheenRoughness": 0.68,
+            "clearcoat": 0,
+            "clearcoatRoughness": 0.3,
+            "anisotropy": 0.32,
+            "transmission": 0,
+            "normalStrength": 0.18
+          },
+          "textures": [
+            {
+              "semantic": "normal",
+              "asset": {
+                "id": "weave-silk-1k",
+                "version": "v1",
+                "url": "https://assets.example.invalid/weave-silk-1k.ktx2",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "colorSpace": "linear-data",
+              "uvSet": 0,
+              "repeat": [
+                12,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "collisionProfileId": "standard-v1",
+      "occlusionMaskId": null
+    },
+    {
+      "instanceId": "main-01",
+      "asset": {
+        "id": "ngu-than-tay-chen-a",
+        "version": "v1",
+        "url": "https://assets.example.invalid/ngu-than-tay-chen-a.glb",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "layerId": 2,
+      "slotId": "main.upper",
+      "meshIds": [
+        "ao_front"
+      ],
+      "binding": {
+        "type": "skinned",
+        "rigId": "vpr-humanoid-v1",
+        "socketId": null,
+        "offset": {
+          "translationM": [
+            0,
+            0,
+            0
+          ],
+          "quaternionXYZW": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "materials": [
+        {
+          "slotId": "fabric",
+          "meshIds": [
+            "ao_front"
+          ],
+          "fabricProfileId": "silk-draped-v1",
+          "dyes": [
+            {
+              "zoneId": "main",
+              "hex": "#1E5E58"
+            }
+          ],
+          "pbr": {
+            "metalness": 0,
+            "roughness": 0.4,
+            "sheen": 0.58,
+            "sheenRoughness": 0.68,
+            "clearcoat": 0,
+            "clearcoatRoughness": 0.3,
+            "anisotropy": 0.32,
+            "transmission": 0,
+            "normalStrength": 0.18
+          },
+          "textures": [
+            {
+              "semantic": "normal",
+              "asset": {
+                "id": "weave-silk-1k",
+                "version": "v1",
+                "url": "https://assets.example.invalid/weave-silk-1k.ktx2",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "colorSpace": "linear-data",
+              "uvSet": 0,
+              "repeat": [
+                12,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "collisionProfileId": "nguthan-neutral-v1",
+      "occlusionMaskId": "torso-opaque-v1"
+    },
+    {
+      "instanceId": "wrap-01",
+      "asset": {
+        "id": "khan-van-a",
+        "version": "v1",
+        "url": "https://assets.example.invalid/khan-van-a.glb",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "layerId": 3,
+      "slotId": "head.wrap",
+      "meshIds": [
+        "wrap"
+      ],
+      "binding": {
+        "type": "socket",
+        "rigId": "vpr-humanoid-v1",
+        "socketId": "head_wrap",
+        "offset": {
+          "translationM": [
+            0,
+            0,
+            0
+          ],
+          "quaternionXYZW": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "materials": [
+        {
+          "slotId": "fabric",
+          "meshIds": [
+            "wrap"
+          ],
+          "fabricProfileId": "silk-draped-v1",
+          "dyes": [
+            {
+              "zoneId": "main",
+              "hex": "#1E5E58"
+            }
+          ],
+          "pbr": {
+            "metalness": 0,
+            "roughness": 0.4,
+            "sheen": 0.58,
+            "sheenRoughness": 0.68,
+            "clearcoat": 0,
+            "clearcoatRoughness": 0.3,
+            "anisotropy": 0.32,
+            "transmission": 0,
+            "normalStrength": 0.18
+          },
+          "textures": [
+            {
+              "semantic": "normal",
+              "asset": {
+                "id": "weave-silk-1k",
+                "version": "v1",
+                "url": "https://assets.example.invalid/weave-silk-1k.ktx2",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "colorSpace": "linear-data",
+              "uvSet": 0,
+              "repeat": [
+                12,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "collisionProfileId": "standard-v1",
+      "occlusionMaskId": null
+    },
+    {
+      "instanceId": "shoes-01",
+      "asset": {
+        "id": "guoc-moc-a",
+        "version": "v1",
+        "url": "https://assets.example.invalid/guoc-moc-a.glb",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "layerId": 4,
+      "slotId": "feet.pair",
+      "meshIds": [
+        "clogs"
+      ],
+      "binding": {
+        "type": "skinned",
+        "rigId": "vpr-humanoid-v1",
+        "socketId": null,
+        "offset": {
+          "translationM": [
+            0,
+            0,
+            0
+          ],
+          "quaternionXYZW": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "materials": [
+        {
+          "slotId": "fabric",
+          "meshIds": [
+            "clogs"
+          ],
+          "fabricProfileId": "wood-lacquer-v1",
+          "dyes": [
+            {
+              "zoneId": "main",
+              "hex": "#70513B"
+            }
+          ],
+          "pbr": {
+            "metalness": 0,
+            "roughness": 0.55,
+            "sheen": 0,
+            "sheenRoughness": 0.68,
+            "clearcoat": 0,
+            "clearcoatRoughness": 0.3,
+            "anisotropy": 0,
+            "transmission": 0,
+            "normalStrength": 0.18
+          },
+          "textures": []
+        }
+      ],
+      "collisionProfileId": "standard-v1",
+      "occlusionMaskId": null
+    },
+    {
+      "instanceId": "fan-01",
+      "asset": {
+        "id": "fan-folding-a",
+        "version": "v1",
+        "url": "https://assets.example.invalid/fan-folding-a.glb",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "layerId": 4,
+      "slotId": "hand.right",
+      "meshIds": [
+        "fan"
+      ],
+      "binding": {
+        "type": "socket",
+        "rigId": "vpr-humanoid-v1",
+        "socketId": "hand_r_fan",
+        "offset": {
+          "translationM": [
+            0,
+            0,
+            0
+          ],
+          "quaternionXYZW": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "materials": [
+        {
+          "slotId": "fabric",
+          "meshIds": [
+            "fan"
+          ],
+          "fabricProfileId": "bamboo-paper-v1",
+          "dyes": [
+            {
+              "zoneId": "main",
+              "hex": "#D4BC84"
+            }
+          ],
+          "pbr": {
+            "metalness": 0,
+            "roughness": 0.7,
+            "sheen": 0,
+            "sheenRoughness": 0.68,
+            "clearcoat": 0,
+            "clearcoatRoughness": 0.3,
+            "anisotropy": 0,
+            "transmission": 0,
+            "normalStrength": 0.18
+          },
+          "textures": []
+        }
+      ],
+      "collisionProfileId": "standard-v1",
+      "occlusionMaskId": null
+    }
+  ],
+  "pose": {
+    "clipId": "stand-formal-v1",
+    "timeSeconds": 0,
+    "playing": false
+  },
+  "camera": {
+    "presetId": "full",
+    "targetM": [
+      0,
+      0.9,
+      0
+    ],
+    "radiusM": 3.1,
+    "azimuthRad": 0.2,
+    "polarRad": 1.4,
+    "fovDegrees": 36
+  },
+  "studio": {
+    "lightingPresetId": "soft-daylight-v1",
+    "backgroundHex": "#F7F5EF"
+  },
+  "decorations": []
+}

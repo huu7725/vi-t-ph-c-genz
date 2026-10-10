@@ -1,6 +1,8 @@
 // Browser-safe domain: shared by API, offline UI, and storage validation.
 // Never import environment variables or Gemini SDK in this module.
 import { z } from "zod";
+export { fittingOutfitSchema, defaultFittingOutfit, fittingGarments, fittingAccessories, fittingExclusiveGroups, validateFittingCulture, savedFittingOutfitSchema, fittingStylistResultSchema } from './fitting3d/model.js';
+export type { FittingOutfit, SavedFittingOutfit, FittingStylistRequest, FittingStylistResult } from './fitting3d/model.js';
 import catalog from "./data/catalog.json" with { type: "json" };
 import cultureFacts from "./data/cultureFacts.json" with { type: "json" };
 import cautionRules from "./data/cautionRules.json" with { type: "json" };

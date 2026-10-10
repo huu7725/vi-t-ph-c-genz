@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI proposal — no URLs, no raw code, no authority to certify",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "stylist-proposal/1"
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    },
+    "baseRevision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "catalogVersion": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    },
+    "rulesetVersion": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    },
+    "status": {
+      "enum": [
+        "proposal",
+        "needs_clarification",
+        "no_valid_option"
+      ]
+    },
+    "question": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "claimIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "operations": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "equip"
+                    },
+                    "slotId": {
+                      "enum": [
+                        "base.upper",
+                        "base.lower",
+                        "lining.upper",
+                        "main.upper",
+                        "outer.upper",
+                        "head.wrap",
+                        "head.pin",
+                        "neck.jewelry",
+                        "waist.pendant",
+                        "feet.pair",
+                        "hand.left",
+                        "hand.right"
+                      ]
+                    },
+                    "assetId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "assetVersion": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "slotId",
+                    "assetId",
+                    "assetVersion"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "unequip"
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "itemId"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "setDye"
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "materialSlotId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "zoneId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "hex": {
+                      "type": "string",
+                      "pattern": "^#[0-9A-Fa-f]{6}$"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "itemId",
+                    "materialSlotId",
+                    "zoneId",
+                    "hex"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "setFabric"
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "materialSlotId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "fabricProfileId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "itemId",
+                    "materialSlotId",
+                    "fabricProfileId"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "setPose"
+                    },
+                    "clipId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "clipId"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "op": {
+                      "const": "setPattern"
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "patternAssetId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "surfaceId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "borderGuideId": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+                    },
+                    "tint": {
+                      "type": "string",
+                      "pattern": "^#[0-9A-Fa-f]{6}$"
+                    }
+                  },
+                  "required": [
+                    "op",
+                    "itemId",
+                    "patternAssetId",
+                    "surfaceId",
+                    "borderGuideId",
+                    "tint"
+                  ]
+                }
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 12
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "reason",
+          "claimIds",
+          "operations"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 3
+    },
+    "outfitId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{0,99}$"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "outfitId",
+    "baseRevision",
+    "catalogVersion",
+    "rulesetVersion",
+    "status",
+    "question",
+    "alternatives"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "proposal"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "question": {
+            "type": "null"
+          },
+          "alternatives": {
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "alternatives": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "needs_clarification"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          }
+        }
+      }
+    }
+  ]
+}
