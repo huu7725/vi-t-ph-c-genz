@@ -4,14 +4,14 @@
     "viet-phuc-remix-api": {
       "root": "backend",
       "framework": "express",
-      "installCommand": "npm install --include=dev --workspaces=false",
-      "buildCommand": "npm run build"
+      "installCommand": "npm install --include=dev",
+      "buildCommand": "npm run build -w backend"
     },
     "frontend": {
       "root": "frontend",
       "framework": "vite",
-      "installCommand": "npm install --include=dev --workspaces=false",
-      "buildCommand": "npm run build"
+      "installCommand": "npm install --include=dev",
+      "buildCommand": "npm run build -w frontend"
     }
   },
   "rewrites": [
