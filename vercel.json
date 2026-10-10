@@ -12,13 +12,10 @@
       "maxDuration": 30
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(?!gateway(?:/|$))(.*)",
-      "dest": "/api/gateway?path=/$1"
-    },
-    {
-      "handle": "filesystem"
+      "source": "/api/(.*)",
+      "destination": "/api/gateway?path=/$1"
     }
   ]
 }
